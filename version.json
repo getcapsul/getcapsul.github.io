@@ -1,0 +1,77 @@
+{
+  "version": "1.0.0-beta.4",
+  "build_number": 6,
+  "min_build_number": 0,
+  "built_at_utc": "2026-11-28T16:08:27Z",
+  "expires_at_utc": "2026-12-12T23:59:59Z",
+  "apk_url": "https://github.com/getcapsul/getcapsul.github.io/releases/download/v1.0.0-beta.4-b6/Capsul-v1.0.0-beta.4.apk",
+  "changelog": [
+    "Timeline Checklists & Quick Undo: Tap task progress pills right on your day schedule (with daily reset for repeating tasks) and undo drag, move, or delete actions from the top banner.",
+    "Overlap Helper & Smarter Quick Add: Resolve overlapping tasks in one tap from the seam button, paste multi-line lists straight into Quick Add, and preview upcoming monthly repeat dates.",
+    "In-App Browser Inside Notes: Open links in a floating light or dark reading sheet with minimized bottom tabs so you can browse without losing your place.",
+    "Batch Capsul AI & Routine Checklists: Review multi-task proposals and full Routine plans in a single checklist card, plus save checklists inside Routine blocks.",
+    "Media Studio Layers & In-App Updates: Customize Day, Time, Note, and active-task spotlight layers with true-to-preview exports, plus a What's New update sheet inside Capsul."
+  ],
+  "releases": [
+    {
+      "version": "1.0.0-beta.4",
+      "date": "2026-11-28",
+      "is_current": true,
+      "changelog": [
+        "Timeline Checklists & Quick Undo: Tap task progress pills right on your day schedule (with daily reset for repeating tasks) and undo drag, move, or delete actions from the top banner.",
+        "Overlap Helper & Smarter Quick Add: Resolve overlapping tasks in one tap from the seam button, paste multi-line lists straight into Quick Add, and preview upcoming monthly repeat dates.",
+        "In-App Browser Inside Notes: Open links in a floating light or dark reading sheet with minimized bottom tabs so you can browse without losing your place.",
+        "Batch Capsul AI & Routine Checklists: Review multi-task proposals and full Routine plans in a single checklist card, plus save checklists inside Routine blocks.",
+        "Media Studio Layers & In-App Updates: Customize Day, Time, Note, and active-task spotlight layers with true-to-preview exports, plus a What's New update sheet inside Capsul."
+      ]
+    },
+    {
+      "version": "1.0.0-beta.3",
+      "date": "2026-11-22",
+      "is_current": false,
+      "changelog": [
+        "Bring-Your-Own-Key Capsul AI: Connect your own free Google AI Studio key securely in Settings or the Hub setup flow, with offline triage still built in.",
+        "Redesigned Sleep Schedule: Set or adjust your Wake Up and Bedtime windows per day, across routines, and in Settings with a cleaner night-time timeline view.",
+        "Guided Interactive Walkthrough: Spotlight tour highlighting the Planner timeline, quick capture, and Capsul Hub controls.",
+        "Smarter Quick Capture & Note Search: Staged task preview bar, quick list picker, and fast in-note text search inside the Notes editor.",
+        "Smoother Keyboard & Typography: Bundled Outfit typography and steadier keyboard transitions across sheets and composers."
+      ]
+    },
+    {
+      "version": "1.0.0-beta.2",
+      "date": "2026-11-16",
+      "is_current": false,
+      "changelog": [
+        "Redesigned Books, Movies, Notes, and Shopping notebooks with dedicated paper themes, custom collections, and pull-to-refresh.",
+        "Upcoming release & sequel countdowns for tracked books, films, and series, plus quick episode and page progress steppers.",
+        "Stronger reminder reliability with a new background-battery setup step so task alerts fire on time.",
+        "Smarter shopping lists that prompt you to wrap up older trips, plus an interactive year picker in the Planner calendar.",
+        "Refined sound-first touch feedback throughout the app, replacing heavy haptic vibrations."
+      ]
+    },
+    {
+      "version": "1.0.0-beta.1",
+      "date": "2026-11-04",
+      "is_current": false,
+      "changelog": [
+        "Plan your week in one tap: Build recurring routines (like a Morning or Workout ritual) and apply them across your calendar in seconds.",
+        "New calendar view: Tap to open the full month calendar and easily plan ahead for any day.",
+        "Brand-new look: Fresh app icon on your home screen and a playful animated mascot that greets you when you open the app.",
+        "Faster, lighter download: Cut the download size down by 65% so the app installs almost instantly."
+      ]
+    },
+    {
+      "version": "1.0.0-beta",
+      "date": "2026-11-02",
+      "is_current": false,
+      "changelog": [
+        "Living Capsul mascot dock button with tactile squash-and-stretch swipe physics.",
+        "Hero animated Capsul companion empty state in AI Hub.",
+        "Synchronized What's New interactive walkthrough showcasing mascot morphing.",
+        "Time-blocked planner with auto roll-over.",
+        "Notebook with dynamic shopping slip."
+      ]
+    }
+  ],
+  "revoked": false
+}

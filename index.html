@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Capsul Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="app_icon.png">
+</head>
+<body>
+  <div class="bg-ambient"></div>
+
+  <main class="portal-container">
+    <!-- Brand Hero -->
+    <header class="brand-hero">
+      <div class="mascot-wrap">
+        <div class="mascot-aura"></div>
+        <img src="capsul_mascot.png" alt="Capsul Mascot" class="mascot-img">
+      </div>
+      <h1 class="brand-title">capsul<span class="brand-dot">.</span></h1>
+      <p class="brand-tag">Weekly Preview</p>
+    </header>
+
+    <!-- Main Action Surface -->
+    <section class="action-surface">
+      <div id="statusPill" class="status-pill status-active">
+        <span id="statusText">Active Build</span>
+      </div>
+
+      <a id="downloadBtn" href="./app-release.apk" class="btn-cta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Download APK</span>
+        <span id="versionBadge" class="btn-cta-version"></span>
+      </a>
+
+      <!-- iOS Notice (Shown only on iOS) -->
+      <div id="iosNotice" class="ios-notice-card" hidden>
+        <div class="notice-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="2" width="12" height="20" rx="3"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+        </div>
+        <div class="notice-copy">
+          <div class="notice-title">Built for Android 8.0+</div>
+          <div class="notice-sub">Open <code>getcapsul.github.io</code> on an Android phone to install the preview.</div>
+        </div>
+      </div>
+
+      <!-- Desktop QR Handoff (Shown on desktop browsers) -->
+      <div id="desktopQrCard" class="desktop-qr-card" hidden>
+        <div id="qrCodeMount" class="qr-box" aria-hidden="true"></div>
+        <div class="notice-copy">
+          <div class="notice-title">On a computer? Scan on Android</div>
+          <div class="notice-sub">Point your Android camera here to install directly on your phone, or download the APK above.</div>
+        </div>
+      </div>
+
+      <!-- Install Guide Toggle & Graphical Dialog Guide -->
+      <button id="installGuideToggle" type="button" class="install-guide-toggle" aria-expanded="false" aria-controls="installGuidePanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span id="installGuideToggleLabel">How to install · 3 quick steps</span>
+        <svg class="guide-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+
+      <div id="installGuidePanel" class="install-guide-panel">
+        <div class="install-guide-inner">
+          <!-- Step 1: Browser Download Prompt -->
+          <div class="guide-step-card">
+            <div class="guide-step-head">
+              <span class="guide-step-title">1. Confirm browser download</span>
+            </div>
+            <div class="mock-dialog" aria-hidden="true">
+              <div class="mock-dialog-head warn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <span>File might be harmful</span>
+              </div>
+              <div class="mock-dialog-sub">Capsul.apk · Preview outside Play Store</div>
+              <div class="mock-actions-end">
+                <span class="mock-btn-muted">Cancel</span>
+                <span class="mock-cta-pulse">Download anyway</span>
+              </div>
+            </div>
+            <p class="guide-step-desc">Standard Android warning for any APK outside Google Play. Tap <strong>Download anyway</strong>, then tap <strong>Open</strong> when finished.</p>
+          </div>
+
+          <!-- Step 2: First-Time Browser Toggle -->
+          <div class="guide-step-card">
+            <div class="guide-step-head">
+              <span class="guide-step-title">2. Allow your browser</span>
+              <span class="guide-badge-once">First time only</span>
+            </div>
+            <div class="mock-dialog" aria-hidden="true">
+              <div class="mock-dialog-row">
+                <div>
+                  <div class="mock-dialog-head">
+                    <span>Allow from this source</span>
+                  </div>
+                  <div class="mock-dialog-sub">Settings -> Install unknown apps</div>
+                </div>
+                <div class="mock-switch-track">
+                  <div class="mock-switch-thumb"></div>
+                </div>
+              </div>
+            </div>
+            <p class="guide-step-desc">Asked once on your first install. Tap <strong>Settings</strong>, flip the switch on, and tap Back. Future weekly updates skip this step.</p>
+          </div>
+
+          <!-- Step 3: Google Play Protect Hidden Button -->
+          <div class="guide-step-card">
+            <div class="guide-step-head">
+              <span class="guide-step-title">3. If Google Play Protect warns you</span>
+            </div>
+            <div class="mock-dialog-grid" aria-hidden="true">
+              <div class="mock-dialog">
+                <span class="mock-stage-label">Tap first</span>
+                <div class="mock-dialog-head danger">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <line x1="15" y1="9" x2="9" y2="15"/>
+                    <line x1="9" y1="9" x2="15" y2="15"/>
+                  </svg>
+                  <span>Unsafe app blocked</span>
+                </div>
+                <span class="mock-cta-warn">1. More details v</span>
+                <div class="mock-ok-struck">
+                  <s>OK</s>
+                  <span class="mock-ok-note">Cancels install</span>
+                </div>
+              </div>
+              <div class="mock-dialog">
+                <span class="mock-stage-label">Revealed below</span>
+                <div class="mock-dialog-sub">Scroll down inside the alert and tap:</div>
+                <span class="mock-cta-pulse">2. Install anyway</span>
+                <div class="mock-dialog-sub">Or tap <strong>Scan app</strong> if offered, then tap Install / Update.</div>
+              </div>
+            </div>
+            <p class="guide-step-desc"><strong>Install anyway</strong> stays hidden behind <strong>More details</strong>. Avoid tapping OK, which cancels setup.</p>
+          </div>
+
+          <!-- Samsung Auto Blocker Callout -->
+          <div id="samsungTip" class="samsung-tip">
+            <strong>Samsung Galaxy tip:</strong> If installation is blocked by Auto Blocker, open <strong>Settings -> Security and privacy -> Auto Blocker</strong> and toggle it off.
+          </div>
+        </div>
+      </div>
+
+      <!-- What's New -->
+      <div id="highlightsBlock" class="highlights-block">
+        <div class="highlights-header">What's New</div>
+        <div id="releasesContainer" class="releases-container">
+          <div class="highlight-chip">Loading release preview...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footnote -->
+    <footer class="platform-footnote">
+      <span>Android 8.0+</span>
+      <span class="footnote-sep">/</span>
+      <span>Preserves existing data</span>
+    </footer>
+  </main>
+
+  <script>
+    function formatMarkdown(text) {
+      if (!text) return '';
+      let safe = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      safe = safe.replace(/`([^`]+)`/g, '<code>$1</code>');
+      return safe;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      try {
+        const parts = dateStr.split('-');
+        if (parts.length !== 3) return dateStr;
+        const [y, m, d] = parts.map(Number);
+        if (!y || !m || !d) return dateStr;
+        const date = new Date(Date.UTC(y, m - 1, d));
+        return date.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+          timeZone: 'UTC'
+        });
+      } catch {
+        return dateStr;
+      }
+    }
+
+    function isAtLeastBeta(version) {
+      if (!version || typeof version !== 'string') return false;
+      const cleaned = version.trim().replace(/^[vV]/, '');
+      const m = /^(\d+)\.(\d+)\.(\d+)(?:-(.+))?$/.exec(cleaned);
+      if (!m) return false;
+      const major = Number(m[1]);
+      const minor = Number(m[2]);
+      const patch = Number(m[3]);
+      if (major !== 1) return major > 1;
+      if (minor !== 0) return minor > 0;
+      if (patch !== 0) return patch > 0;
+      const pre = (m[4] || '').toLowerCase();
+      return pre === '' || pre.startsWith('beta') || pre >= 'beta';
+    }
+
+    function normalizeReleaseTag(rawTag) {
+      if (!rawTag || typeof rawTag !== 'string') return '';
+      let cleaned = rawTag.trim();
+      if (cleaned.startsWith('beta-v')) {
+        cleaned = cleaned.slice(6);
+      } else if (cleaned.startsWith('v') || cleaned.startsWith('V')) {
+        cleaned = cleaned.slice(1);
+      }
+      cleaned = cleaned.replace(/-b\d+$/, '');
+      cleaned = cleaned.replace(/^(\d+\.\d+\.\d+(?:-[a-zA-Z0-9.]+)?)-(\d+)$/, '$1');
+      return cleaned.trim();
+    }
+
+    async function fetchPrivateStatsIfRequested() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('stats') !== '1') return null;
+
+      const cacheKey = 'capsul_release_stats_v1';
+      try {
+        const cachedRaw = sessionStorage.getItem(cacheKey);
+        if (cachedRaw) {
+          const cached = JSON.parse(cachedRaw);
+          if (cached && Date.now() - cached.ts < 120000) {
+            return cached.stats;
+          }
+        }
+      } catch (_) {}
+
+      try {
+        const res = await fetch('https://api.github.com/repos/getcapsul/getcapsul.github.io/releases?per_page=100');
+        if (!res.ok) return null;
+        const list = await res.json();
+        if (!Array.isArray(list)) return null;
+
+        const byVersion = {};
+        let total = 0;
+        list.forEach(rel => {
+          const ver = normalizeReleaseTag(rel && rel.tag_name);
+          if (!ver) return;
+          const assets = Array.isArray(rel.assets) ? rel.assets : [];
+          let count = 0;
+          assets.forEach(a => {
+            if (a && typeof a.download_count === 'number') {
+              count += a.download_count;
+            }
+          });
+          byVersion[ver] = (byVersion[ver] || 0) + count;
+          total += count;
+        });
+
+        const stats = { total, byVersion };
+        try {
+          sessionStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), stats }));
+        } catch (_) {}
+        return stats;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function detectPlatform() {
+      const override = (new URLSearchParams(window.location.search).get('preview_os') || '').toLowerCase();
+      if (override === 'samsung') return { isIOS: false, isAndroid: true, isSamsung: true, isDesktop: false };
+      if (override === 'android') return { isIOS: false, isAndroid: true, isSamsung: false, isDesktop: false };
+      if (override === 'ios') return { isIOS: true, isAndroid: false, isSamsung: false, isDesktop: false };
+      if (override === 'desktop') return { isIOS: false, isAndroid: false, isSamsung: false, isDesktop: true };
+
+      const ua = navigator.userAgent || '';
+      const isIOS = /iPad|iPhone|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const isAndroid = /Android/i.test(ua);
+      const isSamsung = isAndroid && /SamsungBrowser|SM-|SAMSUNG/i.test(ua);
+      const isDesktop = !isIOS && !isAndroid;
+      return { isIOS, isAndroid, isSamsung, isDesktop };
+    }
+
+    // Pure-JS ISO/IEC 18004 Version 2-L (25x25) QR Code SVG renderer
+    function renderPortalQrSvg(text) {
+      const bytes = Array.from(new TextEncoder().encode(text));
+      if (bytes.length > 32) return '';
+
+      let bits = '0100' + bytes.length.toString(2).padStart(8, '0');
+      bytes.forEach(b => { bits += b.toString(2).padStart(8, '0'); });
+      bits += '0000';
+      while (bits.length % 8 !== 0) bits += '0';
+
+      const cw = [];
+      for (let i = 0; i < bits.length; i += 8) {
+        cw.push(parseInt(bits.slice(i, i + 8), 2));
+      }
+      const pads = [0xEC, 0x11];
+      let padIdx = 0;
+      while (cw.length < 34) {
+        cw.push(pads[padIdx % 2]);
+        padIdx++;
+      }
+
+      const exp = new Array(512).fill(0);
+      const log = new Array(256).fill(0);
+      let x = 1;
+      for (let i = 0; i < 255; i++) {
+        exp[i] = x;
+        log[x] = i;
+        x <<= 1;
+        if (x & 0x100) x ^= 0x11D;
+      }
+      for (let i = 255; i < 512; i++) exp[i] = exp[i - 255];
+      const gfMul = (a, b) => (a === 0 || b === 0 ? 0 : exp[log[a] + log[b]]);
+
+      let gen = [1];
+      for (let i = 0; i < 10; i++) {
+        const nxt = new Array(gen.length + 1).fill(0);
+        for (let j = 0; j < gen.length; j++) {
+          nxt[j] ^= gen[j];
+          nxt[j + 1] ^= gfMul(gen[j], exp[i]);
+        }
+        gen = nxt;
+      }
+
+      const msg = cw.concat(new Array(10).fill(0));
+      for (let i = 0; i < 34; i++) {
+        const coef = msg[i];
+        if (coef !== 0) {
+          for (let j = 1; j <= 10; j++) {
+            msg[i + j] ^= gfMul(gen[j], coef);
+          }
+        }
+      }
+      const fullCw = cw.concat(msg.slice(34));
+
+      const N = 25;
+      const grid = Array.from({ length: N }, () => new Array(N).fill(false));
+      const isFunc = Array.from({ length: N }, () => new Array(N).fill(false));
+      const setFunc = (r, c, val) => { grid[r][c] = val; isFunc[r][c] = true; };
+
+      const placeFinder = (tr, tc) => {
+        for (let dr = -1; dr <= 7; dr++) {
+          for (let dc = -1; dc <= 7; dc++) {
+            const r = tr + dr;
+            const c = tc + dc;
+            if (r >= 0 && r < N && c >= 0 && c < N) {
+              const inside = dr >= 0 && dr <= 6 && dc >= 0 && dc <= 6;
+              const val = inside && (dr === 0 || dr === 6 || dc === 0 || dc === 6 || (dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4));
+              setFunc(r, c, val);
+            }
+          }
+        }
+      };
+
+      placeFinder(0, 0);
+      placeFinder(0, N - 7);
+      placeFinder(N - 7, 0);
+
+      for (let dr = -2; dr <= 2; dr++) {
+        for (let dc = -2; dc <= 2; dc++) {
+          setFunc(18 + dr, 18 + dc, Math.max(Math.abs(dr), Math.abs(dc)) !== 1);
+        }
+      }
+
+      for (let i = 8; i < N - 8; i++) {
+        if (!isFunc[6][i]) setFunc(6, i, i % 2 === 0);
+        if (!isFunc[i][6]) setFunc(i, 6, i % 2 === 0);
+      }
+
+      setFunc(N - 8, 8, true);
+      for (let i = 0; i <= 8; i++) {
+        if (i !== 6) {
+          if (!isFunc[8][i]) setFunc(8, i, false);
+          if (!isFunc[i][8]) setFunc(i, 8, false);
+        }
+      }
+      for (let i = 0; i < 8; i++) {
+        setFunc(8, N - 1 - i, false);
+        setFunc(N - 1 - i, 8, false);
+      }
+
+      const stream = [];
+      fullCw.forEach(b => {
+        for (let k = 7; k >= 0; k--) stream.push(((b >> k) & 1) === 1);
+      });
+      for (let k = 0; k < 7; k++) stream.push(false);
+
+      let idx = 0;
+      let up = true;
+      for (let col = N - 1; col > 0; col -= 2) {
+        if (col === 6) col -= 1;
+        for (let step = 0; step < N; step++) {
+          const r = up ? N - 1 - step : step;
+          for (let dc = 0; dc >= -1; dc--) {
+            const c = col + dc;
+            if (!isFunc[r][c]) {
+              grid[r][c] = idx < stream.length ? stream[idx++] : false;
+            }
+          }
+        }
+        up = !up;
+      }
+
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < N; c++) {
+          if (!isFunc[r][c] && (r + c) % 2 === 0) {
+            grid[r][c] = !grid[r][c];
+          }
+        }
+      }
+
+      // Format info for ECC L (01) + Mask 0 (000) -> 0x77C4
+      const fmtBits = [];
+      for (let i = 0; i < 15; i++) fmtBits.push(((0x77C4 >> i) & 1) === 1);
+      const tlCoords = [
+        [8,0],[8,1],[8,2],[8,3],[8,4],[8,5],[8,7],[8,8],
+        [7,8],[5,8],[4,8],[3,8],[2,8],[1,8],[0,8]
+      ];
+      tlCoords.forEach(([r, c], k) => { grid[r][c] = fmtBits[14 - k]; });
+      for (let k = 0; k < 7; k++) grid[N - 1 - k][8] = fmtBits[14 - k];
+      for (let k = 0; k < 8; k++) grid[8][N - 8 + k] = fmtBits[7 - k];
+
+      let pathD = '';
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < N; c++) {
+          if (grid[r][c]) pathD += `M${c + 4},${r + 4}h1v1h-1z`;
+        }
+      }
+      return `<svg viewBox="0 0 33 33" shape-rendering="crispEdges"><rect width="33" height="33" fill="#FFFFFF"/><path d="${pathD}" fill="#2C2E2A"/></svg>`;
+    }
+
+    async function initPreviewPortal() {
+      const statusPill = document.getElementById('statusPill');
+      const statusText = document.getElementById('statusText');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const versionBadge = document.getElementById('versionBadge');
+      const releasesContainer = document.getElementById('releasesContainer');
+      const installGuideToggle = document.getElementById('installGuideToggle');
+      const installGuidePanel = document.getElementById('installGuidePanel');
+      const installGuideToggleLabel = document.getElementById('installGuideToggleLabel');
+      const desktopQrCard = document.getElementById('desktopQrCard');
+      const qrCodeMount = document.getElementById('qrCodeMount');
+      const iosNotice = document.getElementById('iosNotice');
+      const samsungTip = document.getElementById('samsungTip');
+
+      function setInstallGuideOpen(open) {
+        if (!installGuideToggle || !installGuidePanel) return;
+        installGuideToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        installGuideToggle.classList.toggle('open', open);
+        installGuidePanel.classList.toggle('open', open);
+        if (installGuideToggleLabel) {
+          installGuideToggleLabel.innerText = open
+            ? 'Hide install guide'
+            : 'How to install · 3 quick steps';
+        }
+      }
+
+      if (installGuideToggle) {
+        installGuideToggle.addEventListener('click', () => {
+          const isOpen = installGuidePanel && installGuidePanel.classList.contains('open');
+          setInstallGuideOpen(!isOpen);
+        });
+      }
+
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+          if (downloadBtn.classList.contains('disabled')) {
+            e.preventDefault();
+            return;
+          }
+          setInstallGuideOpen(true);
+          setTimeout(() => {
+            if (installGuideToggle && typeof installGuideToggle.scrollIntoView === 'function') {
+              installGuideToggle.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+          }, 150);
+        });
+      }
+
+      const platform = detectPlatform();
+      if (platform.isIOS && iosNotice) {
+        iosNotice.hidden = false;
+      }
+      if (platform.isSamsung && samsungTip) {
+        samsungTip.classList.add('samsung-detected');
+      }
+      if (platform.isDesktop && desktopQrCard && qrCodeMount) {
+        qrCodeMount.innerHTML = renderPortalQrSvg('https://getcapsul.github.io/');
+        desktopQrCard.hidden = false;
+      }
+
+      try {
+        const [response, stats] = await Promise.all([
+          fetch('version.json?t=' + Date.now()),
+          fetchPrivateStatsIfRequested()
+        ]);
+        if (!response.ok) throw new Error('Status unavailable');
+        const data = await response.json();
+
+        // Version & Direct Download
+        if (data.version) {
+          versionBadge.innerText = data.version;
+        }
+        if (data.apk_url) {
+          downloadBtn.href = data.apk_url;
+          if (!data.apk_url.startsWith('http')) {
+            downloadBtn.setAttribute('download', data.apk_url.replace(/^\.\//, ''));
+          } else {
+            downloadBtn.removeAttribute('download');
+          }
+        }
+
+        // Expiration Logic
+        if (data.expires_at_utc) {
+          const expiry = new Date(data.expires_at_utc);
+          const now = new Date();
+          const diffMs = expiry - now;
+
+          if (data.revoked || diffMs <= 0) {
+            statusPill.className = 'status-pill status-expired';
+            statusText.innerText = 'Build Expired';
+            downloadBtn.classList.add('disabled');
+            downloadBtn.innerHTML = '<span>Preview Ended</span>';
+            if (installGuideToggle) installGuideToggle.hidden = true;
+            if (installGuidePanel) installGuidePanel.hidden = true;
+            if (desktopQrCard) desktopQrCard.hidden = true;
+          } else {
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const diffHours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+
+            if (diffDays <= 2) {
+              statusPill.className = 'status-pill status-expiring';
+              const remaining = diffDays > 0 
+                ? `${diffDays}d ${diffHours}h left` 
+                : `${diffHours}h left`;
+              statusText.innerText = `Expiring Soon (${remaining})`;
+            } else {
+              statusPill.className = 'status-pill status-active';
+              statusText.innerText = `Active (${diffDays}d left)`;
+            }
+          }
+        }
+
+        if (stats && typeof stats.total === 'number') {
+          const suffix = stats.total === 1 ? 'download' : 'downloads';
+          statusText.innerText = `${statusText.innerText} · ${stats.total} total ${suffix}`;
+        }
+
+        // Render Version History (v1.0.0-beta and above only)
+        const rawReleases = Array.isArray(data.releases) ? data.releases : [];
+        const filteredReleases = rawReleases.filter(rel => isAtLeastBeta(rel && rel.version));
+        const releases = filteredReleases.length > 0
+          ? filteredReleases
+          : (Array.isArray(data.changelog) && data.changelog.length > 0 && (!data.version || isAtLeastBeta(data.version))
+              ? [{ version: data.version || 'Latest', date: '', is_current: true, changelog: data.changelog }]
+              : null);
+
+        if (releases && releases.length > 0) {
+          releasesContainer.innerHTML = '';
+          releases.forEach(rel => {
+            const entry = document.createElement('div');
+            entry.className = 'version-entry';
+
+            const header = document.createElement('div');
+            header.className = 'version-entry-header';
+
+            const titleGroup = document.createElement('div');
+            titleGroup.className = 'version-title-group';
+
+            const tag = document.createElement('span');
+            tag.className = 'version-tag';
+            tag.innerText = rel.version.startsWith('v') ? rel.version : `v${rel.version}`;
+            titleGroup.appendChild(tag);
+
+            if (rel.is_current) {
+              const currentBadge = document.createElement('span');
+              currentBadge.className = 'version-badge-latest';
+              currentBadge.innerText = 'Latest';
+              titleGroup.appendChild(currentBadge);
+            }
+
+            if (stats && stats.byVersion) {
+              const cleanedVer = rel.version.trim().replace(/^[vV]/, '');
+              const count = stats.byVersion[cleanedVer];
+              const dlPill = document.createElement('span');
+              if (typeof count === 'number') {
+                dlPill.className = 'version-downloads-pill tracked';
+                dlPill.innerText = count === 1 ? '1 dl' : `${count} dl`;
+              } else {
+                dlPill.className = 'version-downloads-pill';
+                dlPill.innerText = 'Pre-tracking';
+              }
+              titleGroup.appendChild(dlPill);
+            }
+
+            header.appendChild(titleGroup);
+
+            if (rel.date) {
+              const dateSpan = document.createElement('span');
+              dateSpan.className = 'version-date';
+              dateSpan.innerText = formatDate(rel.date);
+              header.appendChild(dateSpan);
+            }
+
+            entry.appendChild(header);
+
+            const list = document.createElement('div');
+            list.className = 'highlights-list';
+
+            if (Array.isArray(rel.changelog) && rel.changelog.length > 0) {
+              rel.changelog.forEach(item => {
+                const chip = document.createElement('div');
+                chip.className = 'highlight-chip';
+                chip.innerHTML = formatMarkdown(item);
+                list.appendChild(chip);
+              });
+            } else {
+              const chip = document.createElement('div');
+              chip.className = 'highlight-chip';
+              chip.innerText = 'General stability and performance improvements';
+              list.appendChild(chip);
+            }
+
+            entry.appendChild(list);
+            releasesContainer.appendChild(entry);
+          });
+        } else {
+          releasesContainer.innerHTML = '<div class="highlight-chip">General stability and performance improvements</div>';
+        }
+      } catch (err) {
+        // Smooth resilient fallback
+        statusPill.className = 'status-pill status-active';
+        statusText.innerText = 'Active Build';
+        versionBadge.innerText = 'v1.0.0-beta.1';
+        releasesContainer.innerHTML = '<div class="highlight-chip">Latest beta preview release</div>';
+      }
+    }
+
+    initPreviewPortal();
+  </script>
+</body>
+</html>
